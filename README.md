@@ -54,3 +54,6 @@ need to.
 * I have faced Elastic search root suer related one issue , but i have forget how i solved the issue, i will add if i face in future
 
 https://www.vultr.com/docs/how-to-use-sonarqube-on-ubuntu-22-04-lts/
+
+* This is My Jenkins Script, I am trying to create a general script, so I can use it for all project  
+https://github.com/minhaz044/devOps/blob/main/Jenkinsfile
