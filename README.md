@@ -4,11 +4,11 @@
  ```sudo apt update```
  
  * Then install the necessary dependencies
- ` sudo apt-get install -y curl openssh-server ca-certificates `
+ ``` sudo apt-get install -y curl openssh-server ca-certificates ```
 
 * Installing GitLab CE
  
-` curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash `  
+``` curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash ``` 
  * install GitLab CE package by using this command
  ``` sudo apt-get install gitlab-ce ``` 
  
@@ -20,6 +20,7 @@ utility. It provides an automatic configuration. You can modify things later if 
 need to.
 
 ``` sudo gitlab-ctl reconfigure ```
+
 ``` gitlab-ctl start ```
 
  
