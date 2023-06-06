@@ -27,6 +27,7 @@ need to.
  Access the Gitlab 
  
 ## Install Jenkins
+
 * First, add the repository key to your system:
 
 ``` wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg ```
@@ -46,3 +47,10 @@ need to.
 * Check Jenkins   
 
 ``` sudo systemctl status jenkins ```
+
+## Install sonarqube
+
+* I have followed this instraction for SonarInstilazition   
+* I have faced Elastic search root suer related one issue , but i have forget how i solved the issue, i will add if i face in future
+
+https://www.vultr.com/docs/how-to-use-sonarqube-on-ubuntu-22-04-lts/
