@@ -61,7 +61,7 @@ https://github.com/minhaz044/devOps/blob/main/Jenkinsfile
 
 ### Steps in Jenkins
 
-Dashboard => Manage Jenkins => Credentials
+#### Dashboard => Manage Jenkins => Credentials
 
 Add Credentials 
 
@@ -69,12 +69,12 @@ Add Credentials
 	SonarQubeSecretKey		=> Secret text
 	Gitlab_api_token		=> Secret text
 ![Add Credentials](https://github.com/minhaz044/devOps/blob/main/key%20List.png)
-Dashboard => Manage Jenkins => Configure System
+#### Dashboard => Manage Jenkins => Configure System
 
 Add  SonarQube servers   
 ![SonarQube servers](https://github.com/minhaz044/devOps/blob/main/sonarQubeServer.png)
 
-Dashboard => Manage Jenkins => Global Tool Configuration  
+#### Dashboard => Manage Jenkins => Global Tool Configuration  
 JDK
 ![JDK](https://github.com/minhaz044/devOps/blob/main/JDK.png)
 GIT
@@ -84,7 +84,7 @@ GIT
 Maven
 ![Maven](https://github.com/minhaz044/devOps/blob/main/maven.png)
 
-Dashboard => Manage Jenkins => Plugin Manager  
+#### Dashboard => Manage Jenkins => Plugin Manager  
 1. Folder Properties Plugin  
 2. Git Parameter Plug-In
 
