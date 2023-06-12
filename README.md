@@ -101,6 +101,11 @@ Maven
  
 
 ### Steps in SonarQube
+1. Go to your profile , create token for Jenkins.![image](https://github.com/minhaz044/devOps/assets/30874666/1a192379-4c99-49a1-aa36-e0a947b32b49)
+2. 
+
+
+
 
 
 
