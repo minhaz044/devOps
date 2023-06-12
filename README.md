@@ -57,3 +57,17 @@ https://www.vultr.com/docs/how-to-use-sonarqube-on-ubuntu-22-04-lts/
 
 * This is My Jenkins Script, I am trying to create a general script, so I can use it for all project  
 https://github.com/minhaz044/devOps/blob/main/Jenkinsfile
+
+
+### Steps in Jenkins
+
+Dashboard => Manage Jenkins => Credentials
+
+Add Credentials 
+
+	GitLabUser 			=> UserName password
+	SonarQubeSecretKey		=> Secret text
+	Gitlab_api_token		=> Secret text
+
+
+
