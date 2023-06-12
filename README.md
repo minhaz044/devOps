@@ -93,9 +93,14 @@ Maven
 2. In Folder property Section ,add GIT REPO URL ,I am following this pattern ,JOB_NAME+'REPOSITORY_URL'
 ![Folder property Section](https://github.com/minhaz044/devOps/blob/main/folderProperty.png)
 3. Create new Item 
-4. Add a pipeline script with project name just as git repo name
-![image](https://github.com/minhaz044/devOps/assets/30874666/5d48e71a-4faf-4abe-809f-20dbc4c5c36d)
+4. Add a pipeline script with project name just as git repo name ,![image](https://github.com/minhaz044/devOps/assets/30874666/5d48e71a-4faf-4abe-809f-20dbc4c5c36d)
+5. Create the script Like below Screen shoot.![image](https://github.com/minhaz044/devOps/assets/30874666/d4cdc7b1-04b2-4b89-8200-2422dcf3099b)![image](https://github.com/minhaz044/devOps/assets/30874666/105cc670-098b-4f2c-a98e-dd36c194f256)![image](https://github.com/minhaz044/devOps/assets/30874666/e771cb07-a00a-4afd-bfb7-f6236b47d46a)![image](https://github.com/minhaz044/devOps/assets/30874666/ee38d395-c2df-4737-b352-3c61bbea7401)![image](https://github.com/minhaz044/devOps/assets/30874666/25810e4f-2ef5-4bf3-9da4-1dbba9dbecee)![image](https://github.com/minhaz044/devOps/assets/30874666/7d828649-236e-4beb-9e9c-b2ac721726bb)
+6. Apply and Save
+7. Build the Project,initial build might failed. ![image](https://github.com/minhaz044/devOps/assets/30874666/7309c350-b3ba-40a8-961c-197ad217af79)
+8. After initial build new Field will be generated. ![image](https://github.com/minhaz044/devOps/assets/30874666/31fcb4e8-2eb9-46f9-b8b1-a9401481abdb) ![image](https://github.com/minhaz044/devOps/assets/30874666/e135c6ee-809d-4fc0-9ae8-ff42695293b0)
+ 
 
+### Steps in SonarQube
 
 
 
