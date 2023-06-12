@@ -84,6 +84,8 @@ GIT
 Maven
 ![Maven](https://github.com/minhaz044/devOps/blob/main/maven.png)
 
-
+Dashboard => Manage Jenkins => Plugin Manager  
+1. Folder Properties Plugin  
+2. Git Parameter Plug-In
 
 
