@@ -92,3 +92,11 @@ Maven
 1. Create a Folder with Team Name or Profile Name
 2. In Folder property Section ,add GIT REPO URL ,I am following this pattern ,JOB_NAME+'REPOSITORY_URL'
 ![Folder property Section](https://github.com/minhaz044/devOps/blob/main/folderProperty.png)
+3. Create new Item 
+4. Add a pipeline script with project name just as git repo name
+![image](https://github.com/minhaz044/devOps/assets/30874666/5d48e71a-4faf-4abe-809f-20dbc4c5c36d)
+
+
+
+
+
