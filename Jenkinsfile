@@ -14,9 +14,12 @@ pipeline{
     }
     
     environment {
-        SOURCE_GIT_URL= "${'http://192.168.96.6:9595/gitlab-instance-ee8a77a2/' + JOB_BASE_NAME +'.git' }"
+        SOURCE_GIT_URL= getRepoUrl("${JOB_BASE_NAME}"+"REPOSITORY_URL")
         CHECKOUT_BRANCH = "${env.gitlabSourceBranch ?: BRANCH}"
-        PROJECT_ID = getProjectIdByRepoNameAndUrl("${SOURCE_GIT_URL}","${JOB_BASE_NAME}")
+        GITLAB_TOKEN = getGitLabApiSecret('Gitlab_api_token')
+        PROJECT_ID = getProjectIdByRepoNameAndUrl("${SOURCE_GIT_URL}","${JOB_BASE_NAME}","${GITLAB_TOKEN}")
+       
+        
     }
 
     tools {
@@ -28,7 +31,7 @@ pipeline{
                 //updateGitlabCommitStatus name: 'build', state: 'running'
                 echo "........................Git Checkout Started.................."
                 git branch: "${CHECKOUT_BRANCH}", credentialsId: 'GitLabUser', url: "${SOURCE_GIT_URL}"
-                updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'running')
+                updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'running',"${GITLAB_TOKEN}")
             }
             
         }        
@@ -38,13 +41,9 @@ pipeline{
             }
         }
         stage('SonarQube analysis') {
-        //def scannerHome = tool 'SonarScanner 4.0';
             steps{
                 withSonarQubeEnv('SonarQube') {
-                // If you have configured more than one global server connection, you can specify its name
-                //sh "${scannerHome}/bin/sonar-scanner"
-                //    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=RestApi'
-                sh 'mvn sonar:sonar -Dsonar.projectKey=RestApi'
+                sh 'mvn sonar:sonar -Dsonar.projectKey="${JOB_BASE_NAME}"'
                 }
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true , credentialsId: 'SonarQubeSecretKey'
@@ -63,13 +62,13 @@ pipeline{
     
     post {
       failure {
-        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'failed')
+        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'failed',"${GITLAB_TOKEN}")
       }
       success {
-        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'success')
+        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'success',"${GITLAB_TOKEN}")
       }
       aborted {
-        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'canceled')
+        updateCommitStatus("${PROJECT_ID}",getCurrentSHAkey(),'canceled',"${GITLAB_TOKEN}")
       }
     }
 
@@ -78,6 +77,9 @@ pipeline{
 /*---------------------- Dependency Import -------------------*/
 
 import groovy.json.JsonSlurper
+import org.jenkinsci.plugins.credentialsbinding.Binding
+import org.jenkinsci.plugins.credentialsbinding.impl.StringBinding
+import org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordBinding
 
 /*------------------------------------------------------------*/
 
@@ -85,17 +87,17 @@ def getCurrentSHAkey(){
     return sh(script: 'git rev-parse HEAD', returnStdout: true).trim();
 }
 
-def getProjectIdByRepoNameAndUrl(String repoHttpUrl,String repoName){
+def getProjectIdByRepoNameAndUrl(String repoHttpUrl,String repoName,String gitlabToken){
     def repoId=-1;
         timeout(time: 20, unit: 'SECONDS') { 
             def numberOfTry = 5
             while(numberOfTry>0) {
-                def response = httpRequest customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: 'glpat-mXwkhiYf4tcYJVnvZm6C']], 
+                def response = httpRequest customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: gitlabToken]], 
                  validResponseCodes: '199:499',url: 'http://192.168.96.6:9595/api/v4/search?scope=projects&search='+ repoName
-                if(response.status == 200) {
+                if(response.status < 399) {
                    def responseJson = new JsonSlurper().parseText(response.content)
                    for(repo in responseJson){
-                       if(repoHttpUrl.equalsIgnoreCase(repo.http_url_to_repo.trim())){
+                        if(repoHttpUrl.trim().equalsIgnoreCase(repo.http_url_to_repo.trim())){
                            repoId = repo.id
                        }
                    }
@@ -107,16 +109,30 @@ def getProjectIdByRepoNameAndUrl(String repoHttpUrl,String repoName){
         return repoId;
 }
 
-def updateCommitStatus(String repoId,String commitId,String state) {
+def updateCommitStatus(String repoId,String commitId,String state,String gitlabToken) {
     int numberOfTry=5
     timeout(time: 20, unit: 'SECONDS') { 
         while(numberOfTry>0) {
-        def response = httpRequest httpMode: 'POST', customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: 'glpat-mXwkhiYf4tcYJVnvZm6C']],
+        def response = httpRequest httpMode: 'POST', customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: gitlabToken]],
             validResponseCodes: '199:499', url: 'http://192.168.96.6:9595/api/v4/projects/' + repoId + '/statuses/' + commitId + '?' + 'state='+ state
-        if(response.status == 201) {
+        if(response.status  < 300) {
             break;
         }
         numberOfTry--
         }
+    }
+}
+
+def getRepoUrl(String propertyKey){
+    String url="";
+    withFolderProperties{
+        url= env."${propertyKey}";
+    }
+    return url;
+}
+
+def getGitLabApiSecret(String credentialsId) {
+    withCredentials([string(credentialsId: credentialsId, variable: 'GITLAB_API_SECRET')]) {
+        return env.GITLAB_API_SECRET
     }
 }
