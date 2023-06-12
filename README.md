@@ -102,7 +102,16 @@ Maven
 
 ### Steps in SonarQube
 1. Go to your profile , create token for Jenkins.![image](https://github.com/minhaz044/devOps/assets/30874666/1a192379-4c99-49a1-aa36-e0a947b32b49)
-2. 
+2. Create a Gitlab Token for sonarQube in jenkins.![image](https://github.com/minhaz044/devOps/assets/30874666/a384afa7-27ee-4064-a937-b38675b4066d)
+3. Create a devOps configeration in SonarQube. ![image](https://github.com/minhaz044/devOps/assets/30874666/0dac71db-6c11-4e72-acbb-a08cdcc66311)![image](https://github.com/minhaz044/devOps/assets/30874666/707de8fd-d0d8-4cc1-ac46-a9b145d09475)
+4. Project => From GitLab.![image](https://github.com/minhaz044/devOps/assets/30874666/fd041386-79ce-4b17-8243-4a6f5073232e)
+5. Click on SetUp.
+6. Click on With Jenkins .![image](https://github.com/minhaz044/devOps/assets/30874666/dd8d833a-ee78-48bb-860e-018260577860)
+7. Follow the Instraction. ![image](https://github.com/minhaz044/devOps/assets/30874666/c1c75b2a-9628-42a9-b2bd-c367b3fa3373)
+8. After Project creatinon, build from jenkins. 
+9. Now we nned to add the webhook ,which will notify jenkins afetr successfull Build. ![image](https://github.com/minhaz044/devOps/assets/30874666/9b7f2749-33f0-48ee-ac7f-8a0ae30250c1)
+10. And We are Ready To Go
+
 
 
 
