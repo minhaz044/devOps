@@ -68,6 +68,22 @@ Add Credentials
 	GitLabUser 			=> UserName password
 	SonarQubeSecretKey		=> Secret text
 	Gitlab_api_token		=> Secret text
+![Add Credentials](https://github.com/minhaz044/devOps/blob/main/key%20List.png)
+Dashboard => Manage Jenkins => Configure System
+
+Add  SonarQube servers   
+![SonarQube servers](https://github.com/minhaz044/devOps/blob/main/sonarQubeServer.png)
+
+Dashboard => Manage Jenkins => Global Tool Configuration  
+JDK
+![JDK](https://github.com/minhaz044/devOps/blob/main/JDK.png)
+GIT
+![GIT](https://github.com/minhaz044/devOps/blob/main/GIT.png)
+ SonarQube Scanner 
+![SonarQube Scanner](https://github.com/minhaz044/devOps/blob/main/sonarQubeScanner.png)
+Maven
+![Maven](https://github.com/minhaz044/devOps/blob/main/maven.png)
+
 
 
 
