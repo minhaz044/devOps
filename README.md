@@ -88,4 +88,7 @@ Maven
 1. Folder Properties Plugin  
 2. Git Parameter Plug-In
 
-
+#### Create The pipeline 
+1. Create a Folder with Team Name or Profile Name
+2. In Folder property Section ,add GIT REPO URL ,I am following this pattern ,JOB_NAME+'REPOSITORY_URL'
+![Folder property Section](https://github.com/minhaz044/devOps/blob/main/folderProperty.png)
