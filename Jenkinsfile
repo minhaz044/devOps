@@ -9,7 +9,7 @@ pipeline{
 
     parameters {
         gitParameter branch: '', branchFilter: 'origin/(.*)', defaultValue: 'main', description: 'Select Branch Name', name: 'BRANCH',
-        quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'GitParameterDefinition', useRepository: '.*'+"${JOB_BASE_NAME}"
+        quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'GitParameterDefinition', useRepository: '.*(?i)'+"${JOB_BASE_NAME}"
         booleanParam 'UPLOAD_TO_REMOTE'
     }
     
